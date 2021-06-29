@@ -34,7 +34,7 @@ import java.util.List;
 @Service
 public class FaceRecognitionServiceImpl implements FaceRecognitionService {
 
-    private static final String host = "http://169.254.17.1";
+    private static final String host = "http://169.254.2.76";
 
     @SneakyThrows
     @Override
@@ -43,6 +43,7 @@ public class FaceRecognitionServiceImpl implements FaceRecognitionService {
         List<FaceModel> faces = new ArrayList<>();
         List<FaceModel> newStrangersList = new ArrayList<>();
         List<FaceModel> socFaces = new ArrayList<>();
+
 
         String str = getAlphaNumericString(35);
         System.out.println(str);
@@ -141,7 +142,7 @@ public class FaceRecognitionServiceImpl implements FaceRecognitionService {
             for (FaceModel faceModel : faces) {
                 if (Integer.parseInt(faceModel.getSimilarity()) < 50 && faceModel.getFDname().equals("Strangers")) {
                     newStrangersList.add(faceModel);
-                } else if(faceModel.getFDname().equals("Strangers") && Integer.parseInt(faceModel.getSimilarity()) > 93){
+                } else if(Integer.parseInt(faceModel.getSimilarity()) > 93){
                     socFaces.add(faceModel);
                 }
             }
